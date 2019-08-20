@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">keystorecrypto</string>
+    <string name="biometric_failed">Fingerprint not recognized</string>
+
+</resources>

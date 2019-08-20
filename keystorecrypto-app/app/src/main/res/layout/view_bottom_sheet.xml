@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_bottom_sheet"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+    <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+    <LinearLayout
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/img_logo"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:layout_toRightOf="@+id/img_logo"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dialog_title"
+                android:textSize="18dp" />
+
+        <TextView
+                android:id="@+id/item_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_xxsmall"
+                android:textColor="@color/dialog_subtitle"
+                android:textSize="13dp" />
+    </LinearLayout>
+
+    <TextView
+
+            android:id="@+id/item_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_view"
+            android:layout_marginLeft="@dimen/margin_xsmall"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginRight="@dimen/margin_large"
+            android:textColor="@color/dialog_description" />
+
+    <ImageView
+            android:id="@+id/img_fingerprint"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/item_description"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/margin_large"
+            android:background="@drawable/bg_fingerprint"
+            android:padding="14dp"
+            android:src="@drawable/ic_fingerprint" />
+
+
+    <TextView
+            android:id="@+id/item_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_fingerprint"
+            android:layout_marginTop="@dimen/margin_xlarge"
+            android:gravity="center"
+            android:textColor="@color/dialog_status" />
+
+
+    <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_status"
+            android:layout_marginTop="@dimen/margin_xxlarge"
+            android:background="@null"
+            android:paddingTop="@dimen/margin_xxlarge"
+            android:textColor="@color/dialog_cancel_btn" />
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="margin_xxsmall">3dp</dimen>
+    <dimen name="margin_xsmall">5dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin">10dp</dimen>
+    <dimen name="margin_medium">12dp</dimen>
+    <dimen name="margin_large">15dp</dimen>
+    <dimen name="margin_xlarge">18dp</dimen>
+    <dimen name="margin_xxlarge">22dp</dimen>
+
+
+
+    <dimen name="padding_large">14dp</dimen>
+
+
+    <dimen name="font_title">18sp</dimen>
+    <dimen name="font_subtitle">13sp</dimen>
+
+
+    <dimen name="biometric_bg_size">20dp</dimen>
+    <dimen name="biometric_logo_size">48dp</dimen>
+    <dimen name="biometric_bottom_sheet_padding">16dp</dimen>
+    <dimen name="biometric_fingerprint_image_size">60dp</dimen>
+
+</resources>

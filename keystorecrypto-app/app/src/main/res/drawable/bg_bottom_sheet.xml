@@ -1,0 +1,11 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="@android:color/white" />
+
+
+    <corners
+        android:topLeftRadius="@dimen/biometric_bottom_sheet_padding"
+        android:topRightRadius="@dimen/biometric_bottom_sheet_padding" />
+
+</shape>
