@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.hardware.biometrics.BiometricPrompt;
+import android.hardware.biometrics.BiometricPrompt.CryptoObject;
 import android.os.Build;
 import android.os.CancellationSignal;
 import android.support.annotation.NonNull;
@@ -79,6 +80,7 @@ public class BiometricManager extends BiometricManagerV23 {
 
     @TargetApi(Build.VERSION_CODES.P)
     private void displayBiometricPrompt(final BiometricCallback biometricCallback) {
+        CryptoObject crypto = new BiometricPrompt.CryptoObject(this.cipher);
         new BiometricPrompt.Builder(context)
                 .setTitle(title)
                 .setSubtitle(subtitle)
@@ -90,7 +92,7 @@ public class BiometricManager extends BiometricManagerV23 {
                     }
                 })
                 .build()
-                .authenticate(new CancellationSignal(), context.getMainExecutor(),
+                .authenticate(crypto, new CancellationSignal(), context.getMainExecutor(),
                         new BiometricCallbackV28(biometricCallback));
     }
 
