@@ -11,14 +11,13 @@ class SecureLocalManager(ctxt: Context) {
     companion object {
         const val SHARED_PREFERENCES_NAME = "settings"
         const val APPLICATION_KEY_NAME = "ApplicationKey"
-        const val APPLICATION_IV_NAME = "ApplicationKeyIV"
         const val SECRET_TEXT_NAME = "Secret"
+        const val IV_SIZE = 16
     }
 
     private var keystoreManager: KeystoreManager
     private var cryptoHelper: CryptoHelper
     private lateinit var applicationKey : ByteArray
-    private lateinit var iv : ByteArray
     private var applicationContext : Context
 
     init {
@@ -30,11 +29,14 @@ class SecureLocalManager(ctxt: Context) {
 
 
     fun encryptLocalData(data: ByteArray):ByteArray {
-        return cryptoHelper.encryptData(data, applicationKey, iv)
+        val iv = cryptoHelper.generateIV(IV_SIZE)
+        return iv + cryptoHelper.encryptData(data, applicationKey, iv)
     }
 
     fun decryptLocalData(data: ByteArray):ByteArray {
-        return cryptoHelper.decryptData(data, applicationKey, iv)
+        val iv = data.sliceArray(0 .. IV_SIZE-1)
+        val ct = data.sliceArray(IV_SIZE.. data.lastIndex)
+        return cryptoHelper.decryptData(ct, applicationKey, iv)
     }
 
     fun getLocalEncryptionCipher():Cipher{
@@ -46,15 +48,12 @@ class SecureLocalManager(ctxt: Context) {
         if (preferences.contains(APPLICATION_KEY_NAME)) {
             val encryptedAppKey = preferences.getString(APPLICATION_KEY_NAME, "")!!
             applicationKey = keystoreManager.decryptApplicationKey(cryptoHelper.hexToByteArray(encryptedAppKey), cipher)
-            iv = cryptoHelper.hexToByteArray(preferences.getString(APPLICATION_IV_NAME, "")!!)
         }
         else{
             applicationKey = cryptoHelper.generateApplicationKey()
-            iv = cryptoHelper.generateIV()
             val editor = preferences.edit()
             val encryptedAppKey = cryptoHelper.byteArrayToHex(keystoreManager.encryptApplicationKey(applicationKey, cipher))
             editor.putString(APPLICATION_KEY_NAME, encryptedAppKey)
-            editor.putString(APPLICATION_IV_NAME, cryptoHelper.byteArrayToHex(iv))
             editor.apply()
         }
     }
