@@ -214,7 +214,7 @@ function hookKeystoreGetCertificateChain() {
 	keyStoreGetCertificate.implementation = function (alias) {
 		//console.log("[Call] Keystore.getCertificateChain(java.lang.String )")
 		console.log("[Keystore.getCertificateChain()]: alias: " + alias);
-		return this.getCertificate(alias);
+		return this.getCertificateChain(alias);
 	}
 }
 
