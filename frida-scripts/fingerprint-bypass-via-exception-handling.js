@@ -82,7 +82,7 @@ function hookBiometricPrompt_authenticate2()
         
         var authenticationResultObj = Java.use('android.hardware.biometrics.BiometricPrompt$AuthenticationResult');
         authenticationResultInst = authenticationResultObj.$new(crypto,null,0);
-        callbackG = callback; 
+        callbackG = Java.retain(callback); 
 
         //callback.onAuthenticationSucceeded(authenticationResultInst);
 
@@ -135,7 +135,7 @@ function hookFingerprintManagerCompat_authenticate()
         }   
         
         authenticationResultInst = authenticationResultObj.$new(crypto,null,0);
-        callbackG = callback; 
+        callbackG = Java.retain(callback); 
 
         return this.authenticate(crypto,flags, cancel, callback, handler);
     }   
@@ -183,7 +183,7 @@ Error: authenticate(): has more than one overload, use .overload(<signature>) to
         console.log("[FingerprintManager.authenticate()]: crypto: " + crypto + ", flags: "+ flags + ", cancel:" + cancel + ", callback: " + callback + ", handler: "+ handler );
         
         authenticationResultInst = authenticationResultObj.$new(crypto,null,0);
-        callbackG = callback;
+        callbackG = Java.retain(callback);
 
         return this.authenticate(crypto, cancel,flags, callback, handler);
     }   
