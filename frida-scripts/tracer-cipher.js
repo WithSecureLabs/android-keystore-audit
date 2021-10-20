@@ -204,7 +204,7 @@ function hookDoFinal2() {
     var cipherInit = Java.use('javax.crypto.Cipher')['doFinal'].overload('[B');
     cipherInit.implementation = function (byteArr) {
         console.log("[Cipher.doFinal2()]: " + "  cipherObj: " + this);
-        dumpByteArray('In buffer', byteArr);
+        dumpByteArray('In buffer (cipher: ' + this.getAlgorithm() +')', byteArr);
         var tmp = this.doFinal(byteArr);
         dumpByteArray('Result', tmp);
         return tmp;
@@ -215,9 +215,9 @@ function hookDoFinal3() {
     var cipherInit = Java.use('javax.crypto.Cipher')['doFinal'].overload('[B', 'int');
     cipherInit.implementation = function (byteArr, a1) {
         console.log("[Cipher.doFinal3()]: " + "  cipherObj: " + this);
-        dumpByteArray('Out buffer', byteArr);
+        dumpByteArray('Out buffer (cipher: ' + this.getAlgorithm() +')', byteArr);
         var tmp = this.doFinal(byteArr, a1);
-        dumpByteArray('Out buffer', byteArr);
+        dumpByteArray('Out buffer (cipher: ' + this.getAlgorithm() +')', byteArr);
         return tmp;
     }
 }
@@ -226,9 +226,9 @@ function hookDoFinal4() {
     var cipherInit = Java.use('javax.crypto.Cipher')['doFinal'].overload('java.nio.ByteBuffer', 'java.nio.ByteBuffer');
     cipherInit.implementation = function (a1, a2) {
         console.log("[Cipher.doFinal4()]: " + "  cipherObj: " + this);
-        dumpByteArray('In buffer', a1.array());
+        dumpByteArray('In buffer (cipher: ' + this.getAlgorithm() +')', a1.array());
         var tmp = this.doFinal(a1, a2);
-        dumpByteArray('Out buffer', a2.array());
+        dumpByteArray('Out buffer (cipher: ' + this.getAlgorithm() +')', a2.array());
         return tmp;
     }
 }
@@ -237,9 +237,9 @@ function hookDoFinal5() {
     var cipherInit = Java.use('javax.crypto.Cipher')['doFinal'].overload('[B', 'int', 'int');
     cipherInit.implementation = function (byteArr, a1, a2) {
         console.log("[Cipher.doFinal5()]: " + "  cipherObj: " + this);
-        dumpByteArray('In buffer', byteArr);
+        dumpByteArray('In buffer (cipher: ' + this.getAlgorithm() +')', byteArr);
         var tmp = this.doFinal(byteArr, a1, a2);
-        dumpByteArray('Out buffer', tmp);
+        dumpByteArray('Out buffer (cipher: ' + this.getAlgorithm() +')', tmp);
         return tmp;
     }
 }
@@ -248,9 +248,9 @@ function hookDoFinal6() {
     var cipherInit = Java.use('javax.crypto.Cipher')['doFinal'].overload('[B', 'int', 'int', '[B');
     cipherInit.implementation = function (byteArr, a1, a2, outputArr) {
         console.log("[Cipher.doFinal6()]: " + "  cipherObj: " + this);
-        dumpByteArray('In buffer', byteArr);
+        dumpByteArray('In buffer (cipher: ' + this.getAlgorithm() +')', byteArr);
         var tmp = this.doFinal(byteArr, a1, a2, outputArr);
-        dumpByteArray('Out buffer', outputArr);
+        dumpByteArray('Out buffer (cipher: ' + this.getAlgorithm() +')', outputArr);
 
         return tmp;
     }
@@ -260,9 +260,9 @@ function hookDoFinal7() {
     var cipherInit = Java.use('javax.crypto.Cipher')['doFinal'].overload('[B', 'int', 'int', '[B', 'int');
     cipherInit.implementation = function (byteArr, a1, a2, outputArr, a4) {
         console.log("[Cipher.doFinal7()]: " + "  cipherObj: " + this);
-        dumpByteArray('In buffer', byteArr);
+        dumpByteArray('In buffer (cipher: ' + this.getAlgorithm() +')', byteArr);
         var tmp = this.doFinal(byteArr, a1, a2, outputArr, a4);
-        dumpByteArray('Out buffer', outputArr);
+        dumpByteArray('Out buffer (cipher: ' + this.getAlgorithm() +')', outputArr);
         return tmp;
     }
 }
@@ -278,9 +278,9 @@ function hookUpdate() {
     var cipherInit = Java.use('javax.crypto.Cipher')['update'].overload('[B');
     cipherInit.implementation = function (byteArr) {
         console.log("[Cipher.update()]: " + "  cipherObj: " + this);
-        dumpByteArray('In buffer', byteArr);
+        dumpByteArray('In buffer (cipher: ' + this.getAlgorithm() +')', byteArr);
         var tmp = this.update(byteArr);
-        dumpByteArray('Out buffer', tmp);
+        dumpByteArray('Out buffer (cipher: ' + this.getAlgorithm() +')', tmp);
         return tmp;
     }
 }
@@ -289,9 +289,9 @@ function hookUpdate2() {
     var cipherInit = Java.use('javax.crypto.Cipher')['update'].overload('java.nio.ByteBuffer', 'java.nio.ByteBuffer');
     cipherInit.implementation = function (byteArr, outputArr) {
         console.log("[Cipher.update2()]: " + "  cipherObj: " + this);
-        dumpByteArray('In buffer', byteArr.array());
+        dumpByteArray('In buffer (cipher: ' + this.getAlgorithm() +')', byteArr.array());
         var tmp = this.update(byteArr, outputArr);
-        dumpByteArray('Out buffer', outputArr.array());
+        dumpByteArray('Out buffer (cipher: ' + this.getAlgorithm() +')', outputArr.array());
         return tmp;
     }
 }
@@ -300,9 +300,9 @@ function hookUpdate3() {
     var cipherInit = Java.use('javax.crypto.Cipher')['update'].overload('[B', 'int', 'int');
     cipherInit.implementation = function (byteArr, a1, a2) {
         console.log("[Cipher.update3()]: " + "  cipherObj: " + this);
-        dumpByteArray('In buffer', byteArr);
+        dumpByteArray('In buffer (cipher: ' + this.getAlgorithm() +')', byteArr);
         var tmp = this.update(byteArr, a1, a2);
-        dumpByteArray('Out buffer', tmp);
+        dumpByteArray('Out buffer (cipher: ' + this.getAlgorithm() +')', tmp);
         return tmp;
     }
 }
@@ -311,9 +311,9 @@ function hookUpdate4() {
     var cipherInit = Java.use('javax.crypto.Cipher')['update'].overload('[B', 'int', 'int', '[B');
     cipherInit.implementation = function (byteArr, a1, a2, outputArr) {
         console.log("[Cipher.update4()]: " + "  cipherObj: " + this);
-        dumpByteArray('In buffer', byteArr);
+        dumpByteArray('In buffer (cipher: ' + this.getAlgorithm() +')', byteArr);
         var tmp = this.update(byteArr, a1, a2, outputArr);
-        dumpByteArray('Out buffer', outputArr);
+        dumpByteArray('Out buffer (cipher: ' + this.getAlgorithm() +')', outputArr);
         return tmp;
     }
 }
@@ -322,9 +322,9 @@ function hookUpdate5() {
     var cipherInit = Java.use('javax.crypto.Cipher')['update'].overload('[B', 'int', 'int', '[B', 'int');
     cipherInit.implementation = function (byteArr, a1, a2, outputArr, a4) {
         console.log("[Cipher.update5()]: " + "  cipherObj: " + this);
-        dumpByteArray('In buffer', byteArr);
+        dumpByteArray('In buffer (cipher: ' + this.getAlgorithm() +')', byteArr);
         var tmp = this.update(byteArr, a1, a2, outputArr, a4);
-        dumpByteArray('Out buffer', outputArr);
+        dumpByteArray('Out buffer (cipher: ' + this.getAlgorithm() +')', outputArr);
         return tmp;
     }
 }
@@ -446,4 +446,5 @@ function hexdumpJS(arrayBuffer, offset, length) {
     out += row;
     return out;
 };
+
 
