@@ -29,16 +29,16 @@ Java.perform(function () {
 
 function getAuthResult(resultObj, cryptoInst) {
     try {
-        var authenticationResultInst = resultObj.$new(cryptoInst, null, 0);
+        var authenticationResultInst = resultObj.$new(cryptoInst, null, 0, false);
     } catch (error) {
         try {
-            var authenticationResultInst = resultObj.$new(cryptoInst, null);
-        }
-        catch (error) {
+            var authenticationResultInst = resultObj.$new(cryptoInst, null, 0);
+        } catch (error) {
             try {
+                var authenticationResultInst = resultObj.$new(cryptoInst, null);
+            }
+            catch (error) {
                 var authenticationResultInst = resultObj.$new(cryptoInst);
-            } catch (error) {
-                var authenticationResultInst = resultObj.$new(null, null, 0, false);
             }
         }
     }
