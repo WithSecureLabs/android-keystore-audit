@@ -38,7 +38,11 @@ function getAuthResult(resultObj, cryptoInst) {
                 var authenticationResultInst = resultObj.$new(cryptoInst, null);
             }
             catch (error) {
-                var authenticationResultInst = resultObj.$new(cryptoInst);
+                try {
+                    var authenticationResultInst = resultObj.$new(cryptoInst, 0);
+                } catch (error) {
+                    var authenticationResultInst = resultObj.$new(cryptoInst);
+                }
             }
         }
     }
